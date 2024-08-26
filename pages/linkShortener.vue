@@ -13,7 +13,6 @@
     </article>
 
   </section>
-
 </template>
 <script setup lang="ts">
 
@@ -29,7 +28,7 @@ const shortedLink = ref<string | undefined>('')
 const shorten = async () => {
   console.log('Shortening URL:', url.value)
   try {
-    const { data } = await useFetch<LinkShortenerResponse>('https://api-ssl.bitly.com/v4/shorten', {
+    const { link } = await $fetch<LinkShortenerResponse>('https://api-ssl.bitly.com/v4/shorten', {
       method: 'POST',
       body: { long_url: url.value },
       headers: {
@@ -37,9 +36,10 @@ const shorten = async () => {
         'Content-Type': 'application/json'
       }
     })
-    shortedLink.value = data.value?.link
+    shortedLink.value = link
   } catch (error) {
-    console.error('Error shortening URL:', error)
+    console.error('Error shortening URL:', error.data.description)
+    throw new Error(error.data.description)
   }
 }
 
