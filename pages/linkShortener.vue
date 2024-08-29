@@ -3,11 +3,11 @@
     <div class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
       Link Shortener </div>
     <div class="text-xl">Put a valid URL and click "shorten" button. The shortened URL will then be displayed.</div>
-    <div class="flex flex-row items-center gap-2">
-      <UInput v-model="url" placeholder="URL" variant="outline" color="white" class="w-96 p-8" />
+    <div class="flex flex-row items-center pt-8 gap-4">
+      <UInput v-model="url" placeholder="URL" variant="outline" color="white" class="w-96" />
       <UButton @click="shorten">Shorten</UButton>
     </div>
-    <article>
+    <article class="pt-8">
       <div class="text-xl">Shortened URL:</div>
       <div class="text-2xl font-bold">{{ shortedLink }}</div>
     </article>
